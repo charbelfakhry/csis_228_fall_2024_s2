@@ -1,7 +1,9 @@
 const express = require("express");
 const moment = require("moment");
+const { query } = require("./database/db");
+require('dotenv').config();
 
-const port = 3001;
+const port = process.env.APP_PORT;
 
 const app = express();
 
@@ -16,6 +18,11 @@ app.get("/test", (req, res)=>{
         users: dummyUsers(),
     })
 });
+
+app.get('/users', async(req, res)=>{
+    const users = await query("select * from users");
+    res.status(200).json({users});
+})
 
 app.get("/test1", (req, res)=>{
 
