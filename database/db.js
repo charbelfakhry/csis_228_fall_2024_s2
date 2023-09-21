@@ -26,6 +26,7 @@ const query = async(sql, params) =>{
         return results;
     }catch(error){
         console.error(`Query error -> ${sql}: ${error.message}`);
+        throw new Error(error);
     }
 
 }
