@@ -4,9 +4,18 @@ const { query } = require("./database/db");
 require('dotenv').config();
 const mysql = require("mysql2");
 
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+
 const port = process.env.APP_PORT;
 
 const app = express();
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+app.use(cors({origin: '*'}));
 
 const userRoute = require('./routes/user.route');
 

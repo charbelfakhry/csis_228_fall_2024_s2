@@ -1,10 +1,17 @@
 const { query } = require("../database/db");
+const moment = require("moment");
 
 
 
 const getUsers = async() => {
-    const users = await query(sql);
-    return users;
+    try{
+        let sql = `select * from userss`;
+        const users = await query(sql);
+        return users;
+    }catch(error)
+    {
+        throw new Error(error);
+    }
 }
 
 const getUserById = async(id) =>{
@@ -13,22 +20,25 @@ const getUserById = async(id) =>{
     return user;
 } 
 
-const insertUser = async(user) =>{
-    const {user_name, user_username, user_email, user_password, user_dob} = user;
-    let sql = `INSERT INTO user 
+const insertUser = async(userName, userEmail, userDob, userUserName, userPassword) =>{
+    try{
+        let sql = `INSERT INTO users 
     (user_name, user_username, user_email, user_password, user_dob)
     VALUES
     (?, ?, ?, ?, ?);
     `;
     const result = await query(sql, 
         [
-            user_name, 
-            user_username, 
-            user_email, 
-            user_password, 
-            moment(user_dob).format("YYYY-MM-DD")
+            userName, 
+            userUserName, 
+            userEmail, 
+            userPassword, 
+            moment(userDob).format("YYYY-MM-DD")
         ]);
     return result;
+    }catch(error){
+        throw new Error(error);
+    }
 }
 
 const updateUser = async(user) => {
