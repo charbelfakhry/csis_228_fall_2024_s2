@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Op } = require("sequelize");
 const sequelize = require("../DB/configSqlz");
 const Country = require("./Country");
 
-
+Op.endsWith
 const Client = sequelize.define('Client', {
     client_id: {
         type: DataTypes.INTEGER,
