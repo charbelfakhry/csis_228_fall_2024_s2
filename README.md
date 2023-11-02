@@ -22,13 +22,11 @@ Follow these steps to get your Node.js API Backend up and running:
 1. Clone this repository to your local development environment:
 
    ```bash
-   git clone https://github.com/charbelfakhry/csis_228_s1_fall_2024.git
+   git clone https://github.com/charbelfakhry/csis_228_s2_fall_2024.git
    ```
 
 2. Run 
 
-```bash 
-npm install 
-``` 
+```npm install``` 
 on the root directory to install all dependencies.
 3. Run ```npm run dev``` to listen to the API on port 3001

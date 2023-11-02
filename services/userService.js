@@ -3,6 +3,17 @@ const moment = require("moment");
 
 
 
+const authenticate = async(username, password) =>{
+    try{
+        let sql = `select * from users where user_name = ?
+        and user_password = ?`;
+        const user = await query(sql, [username, password]);
+        return user[0];
+    }catch(e){
+        throw new Error(e);
+    }
+}
+
 const getUsers = async() => {
     try{
         let sql = `select * from users`;
@@ -23,9 +34,19 @@ const getUserById = async(id) =>{
         throw new Error(erorr);
     }
 } 
-
+/**
+ * 
+ * @param {String} userName 
+ * @param {String} userEmail 
+ * @param {Date} userDob 
+ * @param {String} userUserName 
+ * @param {String} userPassword 
+ * Insert a user into the database
+ * @returns User
+ */
 const insertUser = async(userName, userEmail, userDob, userUserName, userPassword) =>{
     try{
+        // natvie insert query
         let sql = `INSERT INTO users 
     (user_name, user_username, user_email, user_password, user_dob)
     VALUES
@@ -79,4 +100,5 @@ module.exports = {
     insertUser,
     updateUser,
     deleteUser,
+    authenticate,
 }
