@@ -18,12 +18,16 @@ app.use(bodyParser.json());
 app.use(cors({origin: '*'}));
 
 const userRoute = require('./routes/user.route');
+const typi = require('./routes/typi.route');
+const { getTypiCodeData } = require("./services/fetchData");
 
-app.get("/", (req, res)=>{
-    res.status(200).json({message: "this is the index page"})
+app.get("/", async(req, res)=>{
+    const posts = await getTypiCodeData();
+    res.status(200).json(posts);
 });
 
 app.use('/api/users', userRoute);
+app.use('/api/typi', typi);
 
 
 
