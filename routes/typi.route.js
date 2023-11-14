@@ -4,6 +4,6 @@ const { getTypiByUserIdController, insertTypiByUserIdController } = require('../
 const router = express.Router();
 
 router.post('/getTypiCodeByUserId', getTypiByUserIdController);
-router.post('/insertTypiCodeByUserId', insertTypiByUserIdController);
+router.post('/n', insertTypiByUserIdController);
 
 module.exports = router;

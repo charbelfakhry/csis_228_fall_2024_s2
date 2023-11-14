@@ -3,6 +3,7 @@ const moment = require("moment");
 const { query } = require("./database/db");
 require('dotenv').config();
 const mysql = require("mysql2");
+const ejs = require("ejs");
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -17,13 +18,19 @@ app.use(bodyParser.json());
 
 app.use(cors({origin: '*'}));
 
+app.set('view engine', 'ejs');
+
 const userRoute = require('./routes/user.route');
 const typi = require('./routes/typi.route');
 const { getTypiCodeData } = require("./services/fetchData");
 
 app.get("/", async(req, res)=>{
-    const posts = await getTypiCodeData();
-    res.status(200).json(posts);
+    const data = {
+        user: "user001",
+        title: "Manager",
+        content: "user001 is an HR manager"
+    }
+    res.render("index", data);
 });
 
 app.use('/api/users', userRoute);
