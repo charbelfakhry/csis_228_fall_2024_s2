@@ -25,10 +25,12 @@ const typi = require('./routes/typi.route');
 const { getTypiCodeData } = require("./services/fetchData");
 
 app.get("/", async(req, res)=>{
+    const users = await query("select * from users");
     const data = {
         user: "user001",
         title: "Manager",
-        content: "user001 is an HR manager"
+        content: "user001 is an HR manager",
+        users: users,
     }
     res.render("index", data);
 });
