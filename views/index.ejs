@@ -28,7 +28,9 @@
             <th class="text-uppercase">name</th>
             <th class="text-uppercase">email</th>
             <th class="text-uppercase">password</th>
+            <th class="text-uppercase">comments</th>
             <th class="text-uppercase">edit</th>
+            <th class="text-uppercase">delete</th>
           </thead>
           <tbody>
             <% for(let i = 0; i < users.length; i++){%>
@@ -37,6 +39,11 @@
                 <td><%= users[i].user_name %></td>
                 <td><%= users[i].user_email %></td>
                 <td><%= users[i].user_password %></td>
+                <td>
+                  <button type="button" class="btn btn-primary">
+                    Notifications <span class="badge badge-light"><%= users[i].comments %></span>
+                  </button>
+                </td>
                 <td><button class="btn btn-secondary btn-sm">Edit</button></td>
                 <td><button class="btn btn-danger btn-sm">Del.</button></td>
               </tr>
