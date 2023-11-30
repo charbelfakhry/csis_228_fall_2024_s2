@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
-const { getUsers, insertUser, updateUser, authenticate } = require("../services/userService")
+const { getUsers, insertUser, updateUser, authenticate } = require("../services/userService");
+const { query } = require("../database/db");
 
 
 const authenticateController = async(req, res)=>{
@@ -75,6 +76,18 @@ const deleteUser = async (req, res) => {
     }
 }
 
+const addUserForm = (req, res) =>{
+    res.render("addUser");
+}
+
+const viewUserForm = async(req, res) =>{
+    const sql = "select * from users where user_id = 3";
+    const user = await query(sql);
+    let data ={
+        user: user[0]
+    }
+    res.render("editUser", data);
+}
 
 
 module.exports = {
@@ -82,4 +95,6 @@ module.exports = {
     insertUserController,
     updateUserController,
     authenticateController,
+    addUserForm,
+    viewUserForm,
 }
